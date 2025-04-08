@@ -68,7 +68,7 @@ def view_tasks():
         print("\n*** TASKS LIST ***")   
         for i, task in enumerate(tasks,1):
             print(f"{i}. {task.upper()}") 
-        print("\n******")
+        print("******************")
        
 # Delete
 def delete_task():
@@ -104,26 +104,26 @@ def delete_task():
 
 # Ask to add a task
 def ask_add_task():
-    error_count = 0
+    errors = 0
     while True:
         add = input("Would you like to add a task? (yes/no): ")
         if add.lower() == "yes":
-            error_count = 0
+            errors = 0
             add_task()
             return False
         elif add.lower() == "no":
-            error_count = 0
+            errors = 0
             return False
         else:
-            error_count += 1
-            print(f"\nInvalid input. Attempt {error_count} of 3.\n")
-            if error_count == 3:
+            errors += 1
+            print(f"\nInvalid input. Attempt {errors} of 3.\n")
+            if errors == error_limit:
                 print(f"\n{return_err_msg}\n")
                 return False
             
 # Main function
 def main():
-    err_count = 0
+    errors = 0
     print("\nWelcome to my Todo Application List")
     while True:
         try:
@@ -133,12 +133,12 @@ def main():
             choice = int(choice) 
             if choice == 1:
                 add_task()
-                err_count = 0
+                errors = 0
             elif choice == 2:
-                err_count = 0
+                errors = 0
                 view_task = view_tasks()
             elif choice == 3:
-                err_count = 0
+                errors = 0
                 del_task = delete_task()
             elif choice == 4:
                 print("Goodbye!\n")
@@ -147,10 +147,10 @@ def main():
                 print("\nInvalid choice. Please try again.")
         except ValueError as e:
             # print(f"\nAn error occurred: {e}")
-            err_count += 1
-            print(f"\nInvalid input. Attempt {err_count} of 3.")
-            print(f"{warning_msg[err_count - 1]}\n")
-            if err_count == 3:
+            errors += 1
+            print(f"\nInvalid input. Attempt {errors} of 3.")
+            print(f"{warning_msg[errors - 1]}\n")
+            if errors == error_limit:
                 print(f"{exit_err_msg}\n")
                 break
              
