@@ -63,7 +63,7 @@ def view_tasks():
     if not tasks:
         print("\nThere are currently no tasks!\n")
         ask_add_task()
-        # return False
+        return False
     else:
         print("\n*** TASKS LIST ***")   
         for i, task in enumerate(tasks,1):
@@ -75,7 +75,7 @@ def delete_task():
     if not tasks:
         print("\nThere are no tasks to delete!\n")
         ask_add_task()
-        # return False
+        return False
         
     errors = 0
     while True:
